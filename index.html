@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Barrierefreiheit erleben</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="challenge">
+
+    <header class="challenge-header">
+        <h2 id="title"></h2>
+
+        <div id="challengeNavigation" class="challenge-navigation"></div>
+    </header>
+
+    <section class="challenge-section">
+
+        <div id="introduction"></div>
+
+    </section>
+
+    <section class="challenge-section">
+
+        <div class="challenge-demo">
+            <div class="demo-content" id="demo"></div>
+        </div>
+
+        <div class="challenge-actions">
+
+            <button id="checkButton" disabled>
+                Weiter zur Erklärung
+            </button>
+
+            <div class="toggle-container hidden" id="comparison">
+
+                <span>Original</span>
+
+                <label class="switch">
+                    <input type="checkbox" id="toggleView">
+                    <span class="slider"></span>
+                </label>
+
+                <span>Simulation</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="challenge-section challenge-result" id="result">
+
+        <div id="resultText"></div>
+
+    </section>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
