@@ -5,6 +5,7 @@ import contrast from "./challenges/contrast.js";
 import keyboard from "./challenges/keyboard.js";
 import missingLabels from "./challenges/missingLables.js";
 import screenReader from "./challenges/screenReader.js";
+import responsiveDesign from "./challenges/responsiveDesign.js";
 
 const challenges = [
   colorBlindness,
@@ -12,6 +13,7 @@ const challenges = [
   keyboard,
   missingLabels,
   screenReader,
+  responsiveDesign,
 ];
 
 let currentChallenge = 0;
@@ -72,4 +74,4 @@ export function completeChallenge() {
   renderNavigation();
 }
 
-showChallenge(4);
+showChallenge(5);

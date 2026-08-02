@@ -1,7 +1,7 @@
 let demoContainer = null;
 
 export default {
-  title: "💡 Probieren Sie es selbst",
+  title: "🌈 Farben sind nicht für alle gleich.",
 
   introduction: `
     <p>

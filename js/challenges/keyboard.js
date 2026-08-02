@@ -1,7 +1,7 @@
 let demoContainer = null;
 
 export default {
-  title: "⌨️ Tastaturbedienung",
+  title: "⌨️ Eine Maus ist nicht selbstverständlich. Tastaturbedienung.",
 
   introduction: `
     <p>

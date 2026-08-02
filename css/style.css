@@ -420,9 +420,13 @@ button {
 
 /* Screenreader Simulation Styles */
 
+.screenreader-content {
+    position: relative;
+}
+
 .screenreader-demo {
     position: relative;
-    width: 100%;
+    width: 500px;
     background: white;
 }
 
@@ -430,7 +434,8 @@ button {
     position: absolute;
     inset: 0;
 
-    /*background: black;*/
+    background: black;
+    pointer-events: all;
 }
 
 .screen-overlay {
@@ -479,12 +484,17 @@ button {
 
 .nav-item:focus {
     outline: 3px solid #1976d2;
-    outline-offset: 4px;
+    outline-offset: 1px;
 }
 
 .nav-item:focus-visible {
     outline: 3px solid #1976d2;
-    outline-offset: 3px;
+    outline-offset: 1px;
+}
+
+.nav-item.selected {
+    outline: 3px solid #1976d2;
+    background: #e3f2fd;
 }
 
 .cart-badge {
@@ -510,3 +520,154 @@ button {
     font-weight: 700;
     line-height: 1;
 }
+
+/* Responsive Design Simulation Styles */
+
+.demo-viewport {
+    width: 360px;
+    overflow-x: auto;
+}
+
+.dashboard{
+    width:980px;
+    padding:24px;
+    font-size:26px;
+}
+
+.dashboard h2{
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.dashboard-card{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:18px;
+
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+    gap:16px;
+    
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.dashboard-card h3{
+    margin:0;
+    font-size:34px;
+}
+
+.dashboard-card p{
+    margin:0;
+    color:#666;
+    font-size:24px;
+}
+
+.dashboard-card button{
+    align-self:center;
+    padding:18px 30px;
+    font-size:22px;
+    border-radius:10px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(2,300px);
+    gap:24px;
+}
+
+.dashboard.accessible{
+    width:100%;
+    padding: 16px;
+}
+
+.dashboard.accessible .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.dashboard.accessible .dashboard-card {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.dashboard.accessible .dashboard-card button {
+    align-self: flex-start;
+}
+
+.dashboard.accessible .zoom-content {
+    width: auto;
+}
+
+.edit-button.selected {
+    background: #1976d2;
+    color: white;
+
+    outline: 3px solid #1976d2;
+}
+
+.edit-button.wrong {
+    background: #ffebee;
+    color: #c62828;
+
+    outline: 3px solid #d32f2f;
+}
+
+.zoom-demo{
+    width:100%;
+}
+
+.zoom-viewport {
+    width: 650px;
+    height: 420px;
+
+    overflow: auto;
+
+    border: 2px solid #666;
+    border-radius: 8px;
+
+    background: white;
+}
+
+.zoom-viewport.no-scroll {
+    overflow: hidden;
+}
+
+.zoom-viewport.no-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.zoom-browser{
+    width:650px;
+    margin:auto;
+    border:2px solid #666;
+    border-radius:10px;
+    overflow:hidden;
+    background:white;
+}
+
+.zoom-content {
+    width: max-content;
+    padding: 8px;
+    transform: none;
+    transform-origin: top left;
+    transition: transform .45s ease;
+}
+
+.zoom-content.zoomed {
+    transform: scale(4);
+}
+
+.browser-bar{
+    padding:18px 20px;
+    background:#efefef;
+    border-bottom:1px solid #ddd;
+    text-align:right;
+    font-size:22px;
+    font-weight:700;
+}
+

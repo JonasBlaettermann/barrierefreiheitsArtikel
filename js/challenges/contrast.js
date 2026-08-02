@@ -1,7 +1,7 @@
 let demoContainer = null;
 
 export default {
-  title: "💡 Probieren Sie es selbst",
+  title: "⚫ Kontrast entscheidet über Lesbarkeit.",
 
   introduction: `
     <p>
