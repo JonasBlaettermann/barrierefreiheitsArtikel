@@ -20,9 +20,7 @@
     </header>
 
     <section class="challenge-section">
-
         <div id="introduction"></div>
-
     </section>
 
     <section class="challenge-section">
@@ -31,35 +29,50 @@
             <div class="demo-content" id="demo"></div>
         </div>
 
-        <div class="challenge-actions">
+        <div id="comparisonPanel" class="comparison-panel hidden">
 
-            <button id="checkButton" disabled>
-                Weiter zur Erklärung
-            </button>
+            <h3>Varianten vergleichen</h3>
 
-            <div class="toggle-container hidden" id="comparison">
+            <p class="comparison-description">
+                Wechseln Sie zwischen den verschiedenen Varianten und beobachten Sie,
+                wie sich die Bedienbarkeit verändert.
+            </p>
 
-                <span>Normativ</span>
+            <div class="comparison-options">
 
-                <label class="switch">
-                    <input type="checkbox" id="toggleView">
-                    <span class="slider"></span>
-                </label>
+                <div class="toggle-container">
 
-                <span>Eingeschränkt</span>
+                    <span id="simulation-left" class="toggle-label active">
+                        Normativ
+                    </span>
 
-            </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleView">
+                        <span class="slider"></span>
+                    </label>
 
-            <div id="accessibility-toggle" class="toggle-container hidden">
+                    <span id="simulation-right" class="toggle-label">
+                        Eingeschränkt
+                    </span>
 
-                <span>Nicht barrierefrei</span>
+                </div>
 
-                <label class="switch">
-                    <input id="accessibility-switch" type="checkbox">
-                    <span class="slider"></span>
-                </label>
+                <div class="toggle-container">
 
-                <span>Barrierefrei</span>
+                    <span id="accessibility-left" class="toggle-label active">
+                        Nicht barrierefrei
+                    </span>
+
+                    <label class="switch">
+                        <input id="accessibility-switch" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span id="accessibility-right" class="toggle-label">
+                        Barrierefrei
+                    </span>
+
+                </div>
 
             </div>
 
@@ -72,6 +85,15 @@
         <div id="resultText"></div>
 
     </section>
+
+    <section class="challenge-section">
+
+    <button id="checkButton" disabled>
+        Bitte führen Sie zuerst die Aufgabe aus
+    </button>
+
+</section>
+    
 
 </div>
 

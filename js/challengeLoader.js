@@ -8,10 +8,14 @@ const resultSection = document.getElementById("result");
 const resultText = document.getElementById("resultText");
 
 const checkButton = document.getElementById("checkButton");
-const comparison = document.getElementById("comparison");
+const comparisonPanel = document.getElementById("comparisonPanel");
 const toggle = document.getElementById("toggleView");
 const accessibilityToggle = document.getElementById("accessibility-switch");
-const accessibilityContainer = document.getElementById("accessibility-toggle");
+
+const simulationLeft = document.getElementById("simulation-left");
+const simulationRight = document.getElementById("simulation-right");
+const accessibilityLeft = document.getElementById("accessibility-left");
+const accessibilityRight = document.getElementById("accessibility-right");
 
 let currentChallenge = null;
 let explanationVisible = false;
@@ -51,6 +55,14 @@ resultText.addEventListener("focus", () => {
   speak(resultText.innerText);
 });
 
+function updateToggleLabels() {
+  simulationLeft.classList.toggle("active", !toggle.checked);
+  simulationRight.classList.toggle("active", toggle.checked);
+
+  accessibilityLeft.classList.toggle("active", !accessibilityToggle.checked);
+  accessibilityRight.classList.toggle("active", accessibilityToggle.checked);
+}
+
 export function loadChallenge(
   challenge,
   { onNext: next, onComplete: complete },
@@ -65,10 +77,10 @@ export function loadChallenge(
 
   demo.innerHTML = "";
   resultSection.classList.remove("visible");
-  comparison.classList.add("hidden");
-  accessibilityContainer.classList.add("hidden");
+  comparisonPanel.classList.add("hidden");
   accessibilityToggle.checked = false;
   toggle.checked = true;
+  updateToggleLabels();
 
   checkButton.disabled = true;
   checkButton.textContent = "Bitte führen Sie zuerst die Aufgabe aus";
@@ -101,14 +113,12 @@ checkButton.addEventListener("click", () => {
     explanationVisible = true;
 
     resultSection.classList.add("visible");
-    comparison.classList.remove("hidden");
-    accessibilityContainer.classList.remove("hidden");
-
+    comparisonPanel.classList.remove("hidden");
     checkButton.textContent = "Nächste Challenge →";
 
     onComplete();
 
-    resultSection.scrollIntoView({
+    comparisonPanel.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -122,6 +132,8 @@ toggle.addEventListener("change", () => {
 
   currentChallenge.setSimulationMode?.(toggle.checked);
 
+  updateToggleLabels();
+
   speak(toggle.checked ? "Eingeschränkt aktiviert." : "Normativ aktiviert.");
 });
 
@@ -129,4 +141,6 @@ accessibilityToggle.addEventListener("change", () => {
   if (!currentChallenge) return;
 
   currentChallenge.setAccessibilityMode?.(accessibilityToggle.checked);
+
+  updateToggleLabels();
 });
