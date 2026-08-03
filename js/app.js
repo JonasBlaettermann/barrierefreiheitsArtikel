@@ -74,4 +74,4 @@ export function completeChallenge() {
   renderNavigation();
 }
 
-showChallenge(0);
+showChallenge(1);

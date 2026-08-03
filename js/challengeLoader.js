@@ -11,6 +11,7 @@ const checkButton = document.getElementById("checkButton");
 const comparisonPanel = document.getElementById("comparisonPanel");
 const toggle = document.getElementById("toggleView");
 const accessibilityToggle = document.getElementById("accessibility-switch");
+const simulationToggle = document.getElementById("simulation-toggle");
 
 const simulationLeft = document.getElementById("simulation-left");
 const simulationRight = document.getElementById("simulation-right");
@@ -25,14 +26,6 @@ let onComplete = () => {};
 
 checkButton.addEventListener("focus", () => {
   speak(`Button, ${checkButton.textContent}`);
-});
-
-toggle.addEventListener("focus", () => {
-  speak(
-    toggle.checked
-      ? "Simulation. Umschalter. Eingeschränkt aktiviert."
-      : "Simulation. Umschalter. Normativ aktiviert.",
-  );
 });
 
 accessibilityToggle.addEventListener("focus", () => {
@@ -78,6 +71,12 @@ export function loadChallenge(
   demo.innerHTML = "";
   resultSection.classList.remove("visible");
   comparisonPanel.classList.add("hidden");
+
+  const hasSimulation = typeof challenge.setSimulationMode === "function";
+  console.log(challenge.title);
+  console.log(hasSimulation);
+  simulationToggle.classList.toggle("hidden", !hasSimulation);
+
   accessibilityToggle.checked = false;
   toggle.checked = true;
   updateToggleLabels();
@@ -105,7 +104,9 @@ export function loadChallenge(
     challenge.onLoaded();
   }
   challenge.setAccessibilityMode?.(false);
-  challenge.setSimulationMode?.(true);
+  if (hasSimulation) {
+    challenge.setSimulationMode?.(true);
+  }
 }
 
 checkButton.addEventListener("click", () => {

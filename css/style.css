@@ -125,6 +125,10 @@ button {
     gap: 10px;
 }
 
+.toggle-container.hidden {
+    display: none;
+}
+
 .toggle-label {
     color: #777;
     font-weight: 400;
@@ -246,6 +250,139 @@ button {
     transform: scale(1.02);
 }
 
+/* Contrast Simulation Styles */
+
+.password-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 380px;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.password-dialog h3 {
+    margin: 0 0 0.5rem;
+    color: #222;
+}
+
+.password-dialog label {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.password-dialog input {
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #d6d6d6;
+}
+
+.password-rules {
+    width: 80%;
+    align-self: center;
+    margin-top: 1rem;
+    padding: 1.1rem 1rem;
+    border-radius: 8px;
+    background: #f8f8f8;
+    border: 1px solid #ececec;
+}
+
+.password-rules h4 {
+    margin: 0 0 0.6rem;
+    color: #666;
+}
+
+.password-rules ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.password-rules li {
+    margin-bottom: 0.35rem;
+    color: #7d7d7d;
+}
+
+.password-rules li:last-child {
+    margin-bottom: 0;
+}
+
+.password-rules .fulfilled {
+    color: inherit;
+    font-weight: 700;
+}
+
+.accessible .password-dialog h3 {
+    color: #111;
+}
+
+.accessible .password-dialog label {
+    color: #222;
+}
+
+.accessible .password-dialog input {
+    color: #222;
+    border-color: #999;
+}
+
+.accessible .password-rules {
+    background: #f3f3f3;
+    border: 1px solid #d0d0d0;
+}
+
+.accessible .password-rules h4 {
+    color: #222;
+}
+
+.accessible .password-rules li {
+    color: #222;
+}
+
+.accessible .password-rules .fulfilled {
+    color: inherit;
+    font-weight: 700;
+}
+
+.low-contrast .password-rules li,
+.low-contrast .password-rules .fulfilled {
+    color: #f2f2f2;
+}
+
+.low-contrast.accessible .password-dialog {
+    color: #222;
+}
+
+.low-contrast.accessible .password-dialog label,
+.low-contrast.accessible .password-dialog input,
+.low-contrast.accessible .password-dialog button {
+    color: #555;
+}
+
+.low-contrast.accessible .password-rules {
+    background: #f5f5f5;
+    border: 1px solid #bcbcbc;
+}
+
+.low-contrast.accessible .password-dialog h4,
+.low-contrast.accessible .password-rules .h3 {
+    color: #555;
+}
+
+.low-contrast.accessible .password-rules .fulfilled,
+.low-contrast.accessible .password-rules li {
+    color: #666;
+}
+
+.password-error {
+    margin-top: .75rem;
+    text-align: center;
+    color: #b00020;
+}
+
+.password-error.hidden {
+    display: none;
+}
 
 /* Keyboard Simulation Styles */
 
@@ -286,7 +423,7 @@ button {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 1rem;
 }
 
 .button-row button {
@@ -325,98 +462,6 @@ button {
     outline: none;
 }
 
-
-/* Contrast Simulation Styles */
-
-.password-dialog {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    width: 380px;
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-
-}
-
-.password-dialog h3 {
-    margin: 0 0 0.5rem;
-}
-
-.password-dialog label {
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-.password-dialog input {
-    padding: 0.6rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #cfcfcf;
-}
-
-.password-rules {
-    width: 80%;
-    align-self: center;
-    margin-top: 1rem;
-    padding: 1.1rem 1rem;
-    border-radius: 8px;
-    background: #f3f3f3;
-    border: 1px solid #dcdcdc;
-    border-color: #e6e6e6;
-}
-
-.password-rules.low-contrast {
-    background: #ededed;
-    border-color: #e7e7e7;
-}
-
-.password-rules.low-contrast h4 {
-    color: #333;
-}
-
-.password-rules.low-contrast li {
-    color: #c7c7c7;
-}
-
-.password-rules h4 {
-    margin: 0 0 0.6rem;
-}
-
-.password-rules ul {
-    margin: 0;
-    padding-left: 1.25rem;
-}
-
-.password-rules li {
-    margin-bottom: 0.35rem;
-}
-
-.password-rules li:last-child {
-    margin-bottom: 0;
-}
-
-.fulfilled {
-    color: #2e7d32;
-    font-weight: 600;
-}
-
-.success-message {
-    margin-top: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    text-align: center;
-    background: #eef8ef;
-    border: 1px solid #b8ddb9;
-    border-radius: 6px;
-}
-
-.success-message h3 {
-    margin-top: 0;
-    color: #2e7d32;
-}
-
-.success-message p {
-    margin-bottom: 0;
-}
 
 /* Missing Labels Simulation Styles */
 
@@ -467,6 +512,11 @@ button {
     outline: none;
     padding: .65rem .8rem;
     font: inherit;
+}
+
+.input-prefix.modified {
+    background: #f5f5f5;
+    border-color: #888;
 }
 
 /* Screenreader Simulation Styles */

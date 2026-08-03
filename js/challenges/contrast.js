@@ -1,9 +1,14 @@
 let demoContainer = null;
 
+let simulationMode = true;
+let accessibilityMode = false;
+
 export default {
-  title: "⚫ Kontrast entscheidet über Lesbarkeit.",
+  title: "⚫ Farbkontraste",
 
   introduction: `
+    <h3>Schlechter Kontrast erschwert das Lesen</h3>
+
     <p>
         Ein ausreichender Farbkontrast ist entscheidend dafür, dass Texte gut lesbar sind.
         Ist der Kontrast zwischen Schrift und Hintergrund zu gering, können Informationen
@@ -15,23 +20,46 @@ export default {
         Erstellen Sie ein Passwort, das alle Anforderungen erfüllt. Lesen Sie dazu die
         Passwortregeln und geben Sie ein passendes Passwort ein.   
     </p>
+
+    <p>
+        Erst nach Abschluss der Aufgabe können Sie zwischen der simulierten und der
+        normativen Darstellung sowie einer barrierefreien Variante wechseln.
+    </p>
 `,
 
   explanation: `
+    <h3>Warum ist das problematisch?</h3>
+
     <p>
-        Die Passwortanforderungen wurden mit einem zu geringen Farbkontrast dargestellt.
-        Dadurch waren sie deutlich schwerer zu lesen und die Aufgabe unnötig erschwert.
+        In der eingeschränkten Variante besitzen die Passwortregeln einen zu geringen
+        Farbkontrast zum Hintergrund. Dadurch werden sie schwer lesbar und wichtige
+        Informationen können leicht übersehen werden.
     </p>
 
     <p>
-        Ein ausreichender Kontrast verbessert die Lesbarkeit – insbesondere für Menschen
-        mit Sehbeeinträchtigungen, aber auch bei ungünstigen Lichtverhältnissen oder auf
-        Displays mit geringerer Qualität.
+        Ausreichende Kontraste erleichtern das Lesen für alle Menschen. Besonders
+        profitieren Personen mit Sehbeeinträchtigungen, ältere Menschen sowie Nutzerinnen
+        und Nutzer bei Sonnenlicht oder auf Displays mit geringerer Qualität.
     </p>
-  `,
+
+    <p>
+        Die Web Content Accessibility Guidelines (WCAG) definieren Mindestanforderungen
+        für den Kontrast von Texten, damit Inhalte zuverlässig wahrgenommen werden können.
+    </p>
+
+    <h4>Weiterführende Informationen</h4>
+
+    <ul>
+        <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank">WCAG 2.2 – Understanding Success Criterion 1.4.3: Contrast (Minimum)</a></li>
+
+        <li><a href="https://www.w3.org/WAI/WCAG22/quickref/#contrast-minimum" target="_blank">WCAG Quick Reference – 1.4.3 Contrast (Minimum)</a></li>
+    </ul>
+`,
 
   render({ demo, enableContinue }) {
     demoContainer = demo;
+    demoContainer.classList.remove("low-contrast");
+    demoContainer.classList.remove("accessible");
 
     demo.innerHTML = `
         <div class="password-dialog">
@@ -61,18 +89,17 @@ export default {
                     Speichern
                 </button>
             </div>
-            <div>
-                <p class="success-message hidden">
-                    ✓ Passwort erfolgreich erstellt.
-                </p>
-                </div>
+            <p class="password-error hidden">
+                Das Passwort erfüllt noch nicht alle Anforderungen.
+            </p>
+
 
         </div>
     `;
 
     const passwordInput = demo.querySelector("#password");
     const saveButton = demo.querySelector("#save-password");
-    const successMessage = demo.querySelector(".success-message");
+    const errorMessage = demo.querySelector(".password-error");
 
     const rules = {
       length: demo.querySelector('[data-rule="length"]'),
@@ -82,6 +109,11 @@ export default {
     };
 
     let challengeCompleted = false;
+
+    let lengthOk = false;
+    let upperOk = false;
+    let numberOk = false;
+    let specialOk = false;
 
     function updateRule(element, fulfilled) {
       element.textContent = `${fulfilled ? "☑" : "☐"} ${element.textContent.substring(2)}`;
@@ -94,40 +126,44 @@ export default {
     passwordInput.addEventListener("input", () => {
       const password = passwordInput.value;
 
-      const lengthOk = updateRule(rules.length, password.length >= 6);
+      lengthOk = updateRule(rules.length, password.length >= 6);
 
-      const upperOk = updateRule(rules.upper, /[A-ZÄÖÜ]/.test(password));
+      upperOk = updateRule(rules.upper, /[A-ZÄÖÜ]/.test(password));
 
-      const numberOk = updateRule(rules.number, /\d/.test(password));
+      numberOk = updateRule(rules.number, /\d/.test(password));
 
-      const specialOk = updateRule(
+      specialOk = updateRule(
         rules.special,
         /[^A-Za-z0-9ÄÖÜäöüß]/.test(password),
       );
 
-      const valid = lengthOk && upperOk && numberOk && specialOk;
+      if (!challengeCompleted && password.length >= 6) {
+        challengeCompleted = true;
+        enableContinue();
+      }
 
-      saveButton.disabled = !valid;
+      saveButton.disabled = false;
     });
 
     saveButton.addEventListener("click", () => {
-      if (challengeCompleted) return;
+      if (lengthOk && upperOk && numberOk && specialOk) {
+        errorMessage.classList.add("hidden");
+        return;
+      }
 
-      challengeCompleted = true;
-
-      successMessage.classList.remove("hidden");
-
-      enableContinue();
+      errorMessage.classList.remove("hidden");
     });
   },
 
   setSimulationMode(isSimulation) {
-    if (!demoContainer) return;
+    simulationMode = isSimulation;
 
-    const rules = demoContainer.querySelector(".password-rules");
+    demoContainer.classList.toggle("low-contrast", isSimulation);
+  },
 
-    if (!rules) return;
+  setAccessibilityMode(isAccessible) {
+    accessibilityMode = isAccessible;
 
-    rules.classList.toggle("low-contrast", isSimulation);
+    demoContainer.classList.toggle("accessible", isAccessible);
   },
 };

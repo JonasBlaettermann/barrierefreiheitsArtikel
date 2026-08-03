@@ -4,41 +4,63 @@ export default {
   title: "🏷️ Fehlende Beschriftungen",
 
   introduction: `
+    <h3>Warum sichtbare Beschriftungen wichtig sind</h3>
+
     <p>
-        Formulare sollten dauerhaft beschriftet sein, damit Eingabefelder jederzeit
-        eindeutig zugeordnet werden können. Fehlen diese Beschriftungen und werden
-        stattdessen nur Platzhalter verwendet, gehen wichtige Informationen während
-        der Eingabe verloren.
+        Formulare sollten dauerhaft sichtbare Beschriftungen besitzen, damit
+        Eingabefelder jederzeit eindeutig zugeordnet werden können. Werden
+        stattdessen ausschließlich Platzhalter oder andere Hinweise verwendet,
+        gehen wichtige Informationen häufig während der Eingabe verloren.
     </p>
 
     <p>
         <strong>Ihre Aufgabe:</strong><br>
         Ein Kunde hat eine neue <strong>Vorgangsnummer</strong> erhalten.
-        Aktualisieren Sie diese im folgenden Formular auf:  
-        Aktualisieren Sie diese auf:
-    </p>
-
-    <p class="processNumber-value">
-        <strong>445128</strong>
+        Aktualisieren Sie diese auf: <strong>445128</strong>
     </p>
     `,
 
   explanation: `
+    <h3>Warum ist das problematisch?</h3>
+
     <p>
-      In der Simulation wurden die Beschriftungen der Eingabefelder ausgeblendet. Dadurch war nicht mehr eindeutig erkennbar, welche Nummer zu welchem Feld gehört. Obwohl alle Informationen vorhanden waren, mussten Sie vermutlich raten oder Vermutungen anstellen.
+        In der nicht barrierefreien Variante fehlen die sichtbaren
+        Beschriftungen der Eingabefelder. Sobald ein Feld ausgefüllt wird,
+        ist nicht mehr eindeutig erkennbar, welche Information dort
+        eingetragen werden soll. Dadurch steigt die Wahrscheinlichkeit von
+        Eingabefehlern deutlich.
+    </p>
+
+   <p>
+        Dauerhaft sichtbare Beschriftungen erleichtern die Orientierung,
+        unterstützen beim Ausfüllen komplexer Formulare und helfen auch
+        nach einer Unterbrechung dabei, Eingaben korrekt zuzuordnen.
+        Davon profitieren alle Nutzerinnen und Nutzer.
     </p>
 
     <p>
-      Dauerhaft sichtbare Beschriftungen (Labels) verbessern die Orientierung
-      und erleichtern das Ausfüllen von Formularen für alle Nutzer. Außerdem
-      werden sie von Screenreadern zuverlässig erkannt und vorgelesen, wodurch
-      Formulare auch für blinde und sehbehinderte Menschen verständlich bleiben.
+        Außerdem können Screenreader sichtbare Beschriftungen zuverlässig
+        mit den jeweiligen Eingabefeldern verknüpfen. Dadurch werden
+        Formulare auch für blinde und sehbehinderte Menschen verständlich
+        und zuverlässig bedienbar.
     </p>
 
-    <p> 
-        Besonders Menschen mit kognitiven Einschränkungen, Konzentrationsproblemen oder Gedächtnisschwierigkeiten profitieren davon, da Eingabefelder jederzeit eindeutig zugeordnet werden können. Gleichzeitig erleichtern sichtbare Labels allen Nutzern die Bearbeitung komplexer Formulare.
-    </p>
-  `,
+    <h4>Weiterführende Informationen</h4>
+
+    <ul>
+        <li>
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" target="_blank">
+                WCAG 2.2 – Understanding Success Criterion 3.3.2: Labels or Instructions
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.w3.org/WAI/WCAG22/quickref/#labels-or-instructions" target="_blank">
+                WCAG Quick Reference – 3.3.2 Labels or Instructions
+            </a>
+        </li>
+    </ul>   
+    `,
 
   render({ demo, enableContinue }) {
     demoContainer = demo;
@@ -86,13 +108,14 @@ export default {
             </button>
         </div>
 
-        <p class="success-message hidden"></p>
-
     </div>
     `;
 
+    demoContainer
+      .querySelectorAll("label")
+      .forEach((label) => label.classList.add("hidden"));
+
     const saveButton = demo.querySelector("#saveData");
-    const successMessage = demo.querySelector(".success-message");
     const inputs = demo.querySelectorAll(".input-prefix input");
 
     const originalValues = {};
@@ -105,6 +128,12 @@ export default {
       input.addEventListener("input", () => {
         input.value = input.value.replace(/\D/g, "").slice(0, 6);
 
+        const wrapper = input.closest(".input-prefix");
+
+        wrapper.classList.toggle(
+          "modified",
+          input.value !== originalValues[input.id],
+        );
         updateSaveButton();
       });
     });
@@ -118,48 +147,15 @@ export default {
     }
 
     saveButton.addEventListener("click", () => {
-      const changedInputs = Array.from(inputs).filter(
-        (input) => input.value !== originalValues[input.id],
-      );
-
-      const names = {
-        customerId: "Kunden-ID",
-        contractNumber: "Vertragsnummer",
-        referenceNumber: "Referenznummer",
-        processNumber: "Vorgangsnummer",
-      };
-
-      if (changedInputs.length === 1) {
-        successMessage.innerHTML = `
-        <strong>Die Änderungen wurden gespeichert.</strong><br><br>
-
-        Sie haben folgendes Feld geändert:<br>
-        • ${names[changedInputs[0].id]}
-    `;
-      } else {
-        const changedFields = changedInputs
-          .map((input) => `• ${names[input.id]}`)
-          .join("<br>");
-
-        successMessage.innerHTML = `
-        <strong>Die Änderungen wurden gespeichert.</strong><br><br>
-
-        Sie haben folgende Felder geändert:<br>
-        ${changedFields}
-    `;
-      }
-
-      successMessage.classList.remove("hidden");
-
       enableContinue();
     });
   },
 
-  setSimulationMode(isSimulation) {
-    if (!demoContainer) return;
+  setAccessibilityMode(isAccessible) {
+    demoContainer
+      .querySelectorAll("label")
+      .forEach((label) => label.classList.toggle("hidden", !isAccessible));
 
-    demoContainer.querySelectorAll("label").forEach((element) => {
-      element.classList.toggle("hidden", isSimulation);
-    });
+    demoContainer.classList.toggle("accessible", isAccessible);
   },
 };
