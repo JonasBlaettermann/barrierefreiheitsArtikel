@@ -431,37 +431,39 @@ button {
     border-radius: 6px;
 }
 
-.keyboard-simulation .login-dialog :focus-visible {
-    outline: 2px solid #bdbdbd;
-    outline-offset: 2px;
-
-    box-shadow: 0 0 0 4px rgba(0,95,204,.25);
-}
-
-.keyboard-simulation.accessible .login-dialog :focus-visible {
-    outline: 4px solid #005fcc;
-    outline-offset: 3px;
-
-    border-radius: 4px;
-    box-shadow: 0 0 0 6px rgba(0, 95, 204, 0.2);
-}
-
-.keyboard-simulation .checkbox-row:focus-within {
-    outline: none;
-}
-
-.keyboard-simulation .checkbox-row input:focus {
+.login-dialog :focus,
+.login-dialog :focus-visible {
     outline: none;
     box-shadow: none;
 }
 
-.keyboard-simulation .login-dialog input,
-.keyboard-simulation .login-dialog button,
-.keyboard-simulation .login-dialog a,
-.keyboard-simulation .login-dialog input[type="checkbox"] {
+.checkbox-row:focus-within {
     outline: none;
+    background: transparent;
 }
 
+.keyboard-simulation button,
+.keyboard-simulation input,
+.keyboard-simulation a,
+.keyboard-simulation label {
+    pointer-events: none;
+}
+
+.accessible .login-dialog :focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+}
+
+.accessible .checkbox-row:focus-within {
+    outline: 2px solid #005fcc;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.accessible .checkbox-row input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
 
 /* Missing Labels Simulation Styles */
 
