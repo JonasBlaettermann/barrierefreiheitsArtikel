@@ -2,16 +2,23 @@ import { icons } from "../icons.js";
 import { speak } from "../reader.js";
 
 let demoContainer = null;
+let selectedItem = null;
 
 const speechTexts = {
-  inaccessible: ["Link", "Button", "Link", "Button", "Button"],
+  inaccessible: [
+    "Link",
+    "Schaltfläche",
+    "Link",
+    "Schaltfläche",
+    "Schaltfläche",
+  ],
 
   accessible: [
     "Link, Startseite",
-    "Button, Suche",
+    "Schaltfläche, Suche",
     "Link, Favoriten",
-    "Button, Warenkorb, 3 Artikel",
-    "Button, Profil",
+    "Schaltfläche, Warenkorb, 3 Artikel",
+    "Schaltfläche, Profil",
   ],
 };
 
@@ -30,109 +37,140 @@ function updateSpeechTexts(isAccessible) {
 }
 
 export default {
-  title: "🔊 Mit einem Screenreader navigieren",
+  title: "🔊 Screenreader",
 
   introduction: `
-    <p>
-        🎧 <strong>Hinweis:</strong> Aktivieren Sie für diese Challenge Ihren Ton. Die Aufgabe ist nur mit Audioausgabe vollständig erlebbar.
-    </p>
+    <h3>Warum Screenreader auf gute Beschriftungen angewiesen sind</h3>
 
     <p>
-        <strong>Hinweis zur Demo:</strong> Diese Challenge verwendet eine vereinfachte Simulation eines Screenreaders. Sie soll typische Funktionen und Herausforderungen veranschaulichen, ersetzt jedoch keinen echten Screenreader.
-    </p>
-
-    <p>
-        Viele blinde und sehbehinderte Menschen bedienen Webseiten mit einem Screenreader. Dieser liest die Inhalte einer Webseite vor und ermöglicht die Navigation hauptsächlich über die Tastatur.
+        Blinde und viele sehbehinderte Menschen bedienen Webseiten mit einem
+        Screenreader. Dieser liest Inhalte und Bedienelemente vor und ermöglicht
+        die Navigation hauptsächlich über die Tastatur.
     </p>
 
     <p>
         <strong>Ihre Aufgabe:</strong><br>
-        Versuchen Sie, den Warenkorb ausschließlich anhand der Audioausgabe zu finden.
+        Finden Sie den <strong>Warenkorb</strong> ausschließlich mithilfe der
+        Audioausgabe. Verwenden Sie dazu die <strong>Tabulatortaste</strong>, um
+        durch die Navigation zu wechseln. Wenn Sie glauben, den Warenkorb gefunden
+        zu haben, können Sie ihn zusätzlich mit <strong>Enter</strong> oder der
+        <strong>Leertaste</strong> aktivieren.
     </p>
 
     <p>
-        Der Demo-Bereich bleibt zunächst absichtlich schwarz. Navigieren Sie mit der <strong>Tab-Taste</strong> durch die Navigation. Wenn Sie glauben, den Warenkorb gefunden zu haben, können Sie das Element optional mit <strong>Enter</strong> oder der <strong>Leertaste</strong> aktivieren.
+        Der Demo-Bereich bleibt zunächst bewusst schwarz. Orientieren Sie sich
+        ausschließlich an den vorgelesenen Informationen. Erst nach Abschluss der
+        Aufgabe können Sie zwischen der simulierten und der normativen Darstellung
+        sowie einer barrierefreien Variante wechseln.
     </p>
     `,
 
   explanation: `
+    <h3>Warum ist das problematisch?</h3>
+
     <p>
-        In der Simulation wurden die Navigationselemente absichtlich nicht aussagekräftig beschriftet. Der Screenreader konnte deshalb lediglich allgemeine Informationen wie „Link“ oder „Button“ vorlesen. Ohne weitere Hinweise war nicht erkennbar, welche Funktion sich hinter den einzelnen Elementen verbarg.
+        In der nicht barrierefreien Variante besitzen die Navigationselemente
+        keine aussagekräftigen Beschriftungen. Der Screenreader kann deshalb
+        lediglich allgemeine Informationen wie „Link“ oder "Schaltfläche" vorlesen.
+        Welche Funktion sich dahinter verbirgt, bleibt unklar.
     </p>
 
     <p>
-        Nach dem Umschalten auf die barrierefreie Variante wurden dieselben Elemente mit aussagekräftigen Bezeichnungen versehen, beispielsweise „Button, Warenkorb, 3&nbsp;Artikel“. Die Oberfläche hat sich dabei optisch kaum verändert – für Nutzerinnen und Nutzer eines Screenreaders jedoch erheblich.
+        In der barrierefreien Variante wurden dieselben Elemente mit
+        aussagekräftigen Bezeichnungen versehen, beispielsweise
+        „Button, Warenkorb, 3 Artikel“. Die Oberfläche sieht dabei nahezu
+        identisch aus, für Screenreader-Nutzerinnen und -Nutzer verbessert sich
+        die Bedienbarkeit jedoch erheblich.
     </p>
 
     <p>
-        Barrierefreiheit bedeutet nicht nur, dass Inhalte technisch erreichbar sind. Informationen müssen auch verständlich und eindeutig bereitgestellt werden. Aussagekräftige Beschriftungen, Alternativtexte und eine korrekte HTML-Struktur ermöglichen es Screenreadern, Bedienelemente zuverlässig zu erkennen und sinnvoll vorzulesen.
+        Aussagekräftige Beschriftungen, Alternativtexte und eine semantisch
+        korrekte HTML-Struktur ermöglichen es Screenreadern, Inhalte zuverlässig
+        zu erfassen und verständlich vorzulesen. Dadurch werden digitale Angebote
+        auch für blinde und sehbehinderte Menschen nutzbar.
     </p>
+
+    <h4>Weiterführende Informationen</h4>
+
+    <ul>
+        <li>
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html" target="_blank">
+                WCAG 2.2 – Understanding Success Criterion 4.1.2: Name, Role, Value
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.w3.org/WAI/WCAG22/quickref/#name-role-value" target="_blank">
+                WCAG Quick Reference – 4.1.2 Name, Role, Value
+            </a>
+        </li>
+    </ul>
   `,
 
   render({ demo, enableContinue }) {
     demoContainer = demo;
 
     demo.innerHTML = `
-    <div class="screenreader-demo">
+    <div class="screenreader-content">
+        <div class="screenreader-demo">
 
-        <header class="header">
+            <header class="header">
 
-            <div class="logo">
-                ShopLogo
-            </div>
+                <div class="logo">
+                    ShopLogo
+                </div>
 
-            <nav class="navigation" aria-label="Hauptnavigation">
+                <nav class="navigation" aria-label="Hauptnavigation">
 
-                <a class="nav-item" href="#">
-                    ${icons.home}
-                </a>
+                    <a class="nav-item" href="#">
+                        ${icons.home}
+                    </a>
 
-                <button class="nav-item" aria-label="">
-                    ${icons.search}
-                </button>
+                    <button class="nav-item" aria-label="">
+                        ${icons.search}
+                    </button>
 
-                <a class="nav-item" href="#">
-                    ${icons.favorite}
-                </a>
+                    <a class="nav-item" href="#">
+                        ${icons.favorite}
+                    </a>
 
-                <button class="nav-item" aria-label="" id="cartButton">
-                    ${icons.cart}
-                    <span class="cart-badge">3</span>
-                </button>
+                    <button class="nav-item" aria-label="" id="cartButton">
+                        ${icons.cart}
+                        <span class="cart-badge">3</span>
+                    </button>
 
-                <button class="nav-item" aria-label="">
-                    ${icons.person}
-                </button>
+                    <button class="nav-item" aria-label="">
+                        ${icons.person}
+                    </button>
 
-            </nav>
+                </nav>
 
-            
+            </header>
+        
+            <div class="screen-overlay"></div>
 
-        </header>
-       
-        <div class="screen-overlay"></div>
+        </div>
 
-    </div>
+        <div class="screenreader-status hidden">
 
-     <div class="screenreader-status hidden">
+            <p>
+            Ende der Navigation erreicht.
+            </p>
 
-        <p>
-           Ende der Navigation erreicht.
-        </p>
+            <p class="screenreader-hint">
+                Sie können die Navigation erneut ausprobieren oder mit der Erklärung fortfahren.
+            </p>
 
-        <p class="screenreader-hint">
-            Sie können die Navigation erneut ausprobieren oder mit der Erklärung fortfahren.
-        </p>
+            <button id="restartNavigation">
+                🔄 Von vorne beginnen
+            </button>
 
-        <button id="restartNavigation">
-            🔄 Von vorne beginnen
-        </button>
+        </div>
 
     </div>
     `;
 
     updateSpeechTexts(false);
-
     const navItems = demo.querySelectorAll(".nav-item");
     const status = demo.querySelector(".screenreader-status");
     const restartButton = demo.querySelector("#restartNavigation");
@@ -180,15 +218,20 @@ export default {
 
     navItems.forEach((item) => {
       item.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") {
+        if (
+          event.key !== "Enter" &&
+          event.key !== " " &&
+          event.key !== "Spacebar"
+        ) {
           return;
         }
 
         event.preventDefault();
 
-        navItems.forEach((i) => i.classList.remove("selected"));
+        selectedItem = item;
 
-        item.classList.add("selected");
+        navItems.forEach((i) => i.classList.remove("selected"));
+        selectedItem.classList.add("selected");
 
         speak(`${item.dataset.speech}, aktiviert`);
       });
@@ -197,6 +240,7 @@ export default {
 
   setAccessibilityMode(isAccessible) {
     updateSpeechTexts(isAccessible);
+    demoContainer.querySelector(".nav-item")?.focus();
   },
 
   setSimulationMode(isSimulation) {
@@ -205,6 +249,8 @@ export default {
     demoContainer
       .querySelector(".screen-overlay")
       .classList.toggle("hidden", !isSimulation);
+
+    demoContainer.querySelector(".nav-item")?.focus();
   },
 
   onLoaded() {

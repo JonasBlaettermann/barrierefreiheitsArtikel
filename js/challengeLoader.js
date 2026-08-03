@@ -73,8 +73,6 @@ export function loadChallenge(
   comparisonPanel.classList.add("hidden");
 
   const hasSimulation = typeof challenge.setSimulationMode === "function";
-  console.log(challenge.title);
-  console.log(hasSimulation);
   simulationToggle.classList.toggle("hidden", !hasSimulation);
 
   accessibilityToggle.checked = false;
@@ -118,11 +116,6 @@ checkButton.addEventListener("click", () => {
     checkButton.textContent = "Nächste Challenge →";
 
     onComplete();
-
-    comparisonPanel.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
   } else {
     onNext();
   }

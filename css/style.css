@@ -524,13 +524,21 @@ button {
 /* Screenreader Simulation Styles */
 
 .screenreader-content {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 250px;
 }
 
 .screenreader-demo {
     position: relative;
+
     width: 500px;
+    height: 80px;
+
     background: white;
+    overflow: hidden;
 }
 
 .screen-overlay {
@@ -541,8 +549,26 @@ button {
     pointer-events: all;
 }
 
-.screen-overlay {
-    pointer-events: all;
+.screenreader-status {
+    min-height: 110px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+}
+
+.screenreader-status.hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.screenreader-hint {
+    margin: .5rem 0 1.2rem;
+}
+
+#restartNavigation {
+    margin-bottom: .5rem;
 }
 
 .header {
@@ -578,6 +604,11 @@ button {
     text-decoration: none;
 }
 
+.nav-item.selected {
+    outline: 3px solid #1976d2;
+    background: #e3f2fd;
+}
+
 .nav-item svg {
     width: 24px;
     height: 24px;
@@ -593,11 +624,6 @@ button {
 .nav-item:focus-visible {
     outline: 3px solid #1976d2;
     outline-offset: 1px;
-}
-
-.nav-item.selected {
-    outline: 3px solid #1976d2;
-    background: #e3f2fd;
 }
 
 .cart-badge {
