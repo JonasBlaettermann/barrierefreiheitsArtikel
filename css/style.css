@@ -250,6 +250,10 @@ button {
     transform: scale(1.02);
 }
 
+.accessible .status-failure {
+    border: 3px solid #222;
+}
+
 /* Contrast Simulation Styles */
 
 .password-dialog {

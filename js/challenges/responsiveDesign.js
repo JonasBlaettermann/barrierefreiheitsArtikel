@@ -6,7 +6,7 @@ let accessibilityMode = false;
 const cards = [
   { title: "👥 Kunden", value: "1.284 Kunden" },
   { title: "📄 Verträge", value: "842 Verträge" },
-  { title: "👤 Benutzer", value: "18 Benutzer", target: true },
+  { title: "👤 Benutzer", value: "18 Benutzer" },
   { title: "💰 Rechnungen", value: "312 offen" },
   { title: "📦 Produkte", value: "587 Produkte" },
   { title: "⚙️ Einstellungen", value: "24 Optionen" },
@@ -64,7 +64,7 @@ export default {
   <p>
       In der eingeschränkten Variante besitzt das Dashboard eine feste Breite.
       Bei einer Vergrößerung auf 400&nbsp;% reichen die Inhalte dadurch über
-      den sichtbaren Bereich hinaus. Um alle Informationen zu erreichen,
+      den sichtbaren Bereich hinaus. Um alle Inhalte zu erreichen,
       muss zusätzlich horizontal gescrollt werden.
   </p>
 
@@ -76,9 +76,9 @@ export default {
   </p>
 
   <p>
-      Ein responsives Layout verbessert nicht nur die Barrierefreiheit,
-      sondern erleichtert auch die Nutzung auf Smartphones, Tablets und
-      kleinen Bildschirmen.
+    Ein responsives Layout verbessert nicht nur die Barrierefreiheit, sondern 
+    sorgt auch auf Smartphones, Tablets und kleinen Bildschirmen für eine bessere 
+    Nutzbarkeit.
   </p>
 
   <h4>Weiterführende Informationen</h4>

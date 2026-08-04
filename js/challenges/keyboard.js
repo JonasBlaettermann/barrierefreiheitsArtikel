@@ -7,25 +7,25 @@ export default {
     <h3>Warum Tastaturnavigation wichtig ist</h3>
 
     <p>
-        Nicht alle Menschen können eine Maus verwenden. Viele bedienen
-        Webseiten ausschließlich mit der Tastatur oder anderen
-        Eingabegeräten, die sich wie eine Tastatur verhalten.
-        Deshalb müssen alle interaktiven Elemente zuverlässig erreichbar
-        und ihr Fokus jederzeit eindeutig erkennbar sein.
+      Nicht alle Menschen können eine Maus verwenden. Viele bedienen
+      Webseiten ausschließlich mit der Tastatur oder anderen
+      Eingabegeräten, die sich wie eine Tastatur verhalten.
+      Deshalb müssen alle interaktiven Elemente zuverlässig mit der 
+      Tastatur erreichbar sein und der Tastaturfokus jederzeit eindeutig erkennbar bleiben.
     </p>
 
     <p>
-        <strong>Ihre Aufgabe:</strong><br>
-        Bedienen Sie den folgenden Anmeldedialog ausschließlich mit der
-        Tastatur. Verwenden Sie die <strong>Tabulatortaste</strong>, um
-        zwischen den Elementen zu wechseln, und schließen Sie die
-        Anmeldung über die Schaltfläche <strong>Anmelden</strong> ab.
+      <strong>Ihre Aufgabe:</strong><br>
+      Bedienen Sie den folgenden Anmeldedialog ausschließlich mit der
+      Tastatur. Verwenden Sie die <strong>Tabulatortaste</strong>, um
+      zwischen den Elementen zu wechseln, und schließen Sie die
+      Anmeldung über die Schaltfläche <strong>Anmelden</strong> ab.
     </p>
 
     <p>
-        Erst nach Abschluss der Aufgabe können Sie zwischen der
-        simulierten und der normativen Darstellung sowie einer
-        barrierefreien Variante wechseln.
+      Erst nach Abschluss der Aufgabe können Sie zwischen der
+      simulierten und der normativen Darstellung sowie einer
+      barrierefreien Variante wechseln.
     </p>
   `,
 
@@ -33,26 +33,26 @@ export default {
     <h3>Warum ist das problematisch?</h3>
 
     <p>
-        In der nicht barrierefreien Variante wurde die sichtbare
-        Fokusmarkierung entfernt. Dadurch ist nicht mehr erkennbar,
-        welches Element aktuell ausgewählt ist. Für Menschen, die
-        ausschließlich mit der Tastatur navigieren, wird die Bedienung
-        dadurch schnell schwierig oder sogar unmöglich.
+      In der nicht barrierefreien Variante wurde die sichtbare
+      Fokusmarkierung entfernt. Dadurch ist nicht mehr erkennbar,
+      welches Element aktuell ausgewählt ist. Für Menschen, die
+      ausschließlich mit der Tastatur navigieren, wird die Bedienung
+      dadurch schnell schwierig oder sogar unmöglich.
     </p>
 
     <p>
-        Eine deutlich sichtbare Fokusmarkierung erleichtert die
-        Orientierung und sorgt dafür, dass jederzeit nachvollziehbar
-        bleibt, welches Element als Nächstes aktiviert wird. Davon
-        profitieren nicht nur Menschen mit motorischen
-        Einschränkungen, sondern auch alle, die eine Tastatur zur
-        Navigation verwenden.
+      Eine deutlich sichtbare Fokusmarkierung erleichtert die
+      Orientierung und sorgt dafür, dass jederzeit nachvollziehbar
+      bleibt, welches Element als Nächstes aktiviert wird. Davon
+      profitieren nicht nur Menschen mit motorischen
+      Einschränkungen, sondern auch alle, die eine Tastatur zur
+      Navigation verwenden.
     </p>
 
     <p>
-        Die Web Content Accessibility Guidelines (WCAG) fordern deshalb,
-        dass der Tastaturfokus sichtbar und eindeutig erkennbar sein
-        muss.
+      Die Web Content Accessibility Guidelines (WCAG) fordern deshalb,
+      dass der Tastaturfokus sichtbar und eindeutig erkennbar sein
+      muss.
     </p>
 
     <h4>Weiterführende Informationen</h4>
@@ -152,15 +152,11 @@ export default {
     if (!demoContainer) return;
 
     demoContainer.classList.toggle("keyboard-simulation", isSimulation);
-
-    // demoContainer.querySelector("#username")?.focus();
   },
 
   setAccessibilityMode(isAccessible) {
     if (!demoContainer) return;
 
     demoContainer.classList.toggle("accessible", isAccessible);
-
-    // demoContainer.querySelector("#username")?.focus();
   },
 };

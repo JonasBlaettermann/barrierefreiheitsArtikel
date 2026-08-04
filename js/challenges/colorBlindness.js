@@ -51,24 +51,38 @@ function updateColors() {
   failure.style.color = "#fff";
 }
 
+const labels = {
+  inaccessible: ["Status A", "Status B", "Status C"],
+  accessible: ["✔ Status A", "✔ Status B", "✖ Status C"],
+};
+
+function updateLabels() {
+  if (!demoContainer) return;
+
+  const texts = accessibilityMode ? labels.accessible : labels.inaccessible;
+
+  demoContainer.querySelectorAll(".status").forEach((button, index) => {
+    button.textContent = texts[index];
+  });
+}
+
 export default {
   title: "🌈 Rot-Grün-Sehschwäche",
 
   introduction: `
     <h3>Farben sind nicht für alle gleich</h3>
+
     <p>
-        Rund 8 % der Männer und etwa 0,5 % der Frauen europäischer Abstammung haben eine Form der Rot-Grün-Sehschwäche. Für sie können bestimmte Rot- und Grüntöne nur schwer oder gar nicht voneinander unterschieden werden.
+      Etwa 9 % der Männer und etwa 0,8 % der Frauen sind von einer From der Rot-Grün-Sehschwäche betroffen. Sie können Rot- und Grüntöne nur schwer bis gar nicht voneinander untescheiden. 
     </p>
 
     <p>
-       <strong>Ihre Aufgabe:</strong><br>
-      Zwei der drei Statusmeldungen gehören zusammen.
-      Welche Statusmeldung unterscheidet sich von den anderen?
-      Treffen Sie Ihre Entscheidung ausschließlich anhand der dargestellten Farben.
-  </p>
+      <strong>Ihre Aufgabe:</strong><br>
+      Zwei der drei Statusmeldungen gehören zusammen. Welche Statusmeldung unterscheidet sich von den anderen? Treffen Sie Ihre Entscheidung ausschließlich anhand der Farbe der Schaltfächen.
+    </p>
 
     <p>
-        Erst nach Abschluss der Aufgabe können Sie zwischen der simulierten und der normativen Darstellung sowie einer barrierefreien Variante wechseln.
+      Erst nach Abschluss der Aufgabe können Sie zwischen der simulierten und der normativen Darstellung sowie einer barrierefreien Variante wechseln.
     </p>
 `,
 
@@ -76,15 +90,19 @@ export default {
     <h3>Warum ist das problematisch?</h3>
 
     <p>
-        In der eingeschränkten Variante unterscheiden sich die beiden Statusmeldungen ausschließlich durch ihre Farbe. Für Menschen mit einer Rot-Grün-Sehschwäche kann dieser Unterschied kaum oder gar nicht erkennbar sein. Dadurch wird unklar, welche Meldung einen Fehler und welche einen erfolgreichen Zustand beschreibt.
+      In der eingeschränkten Darstellung sehen wird die Farben, wie sie für jemanden mit einer Rot-Grün-Sehschwäche aussehen würde. Die Funktionale Unterscheidung wird dabei zu einem Ratespiel, da die Unterschiede kaum zu erkennen sind. 
+    </p>
+
+    <p> 
+      Im Normativen Modus fallen die Unterschiede sofort auf. 
     </p>
 
     <p>
-        In einer barrierefreien Oberfläche wird Bedeutung nicht ausschließlich über Farben vermittelt. Zusätzliche Hinweise wie Symbole, Texte oder unterschiedliche Formen stellen sicher, dass Informationen unabhängig vom Farbsehen verständlich bleiben.
+      In einer barrierefreien Oberfläche sollte diese Einschränlung mit bedacht werden. Es sollten zusätzliche Hinweise wie Symbole, Texte oder unterschiedliche Formen gewählt werden, um den Informationsgehalt gut zu transportieren. 
     </p>
 
     <p>
-        Dieses Prinzip ist Bestandteil der Web Content Accessibility Guidelines (WCAG). Informationen dürfen nicht ausschließlich durch Farben vermittelt werden.
+      Dieses Prinzip ist Bestandteil der Web Content Accessibility Guidelines (WCAG). Informationen dürfen nicht ausschließlich durch Farben vermittelt werden.
     </p>
 
     <h4>Weiterführende Informationen</h4>
@@ -144,5 +162,6 @@ export default {
   setAccessibilityMode(isAccessible) {
     accessibilityMode = isAccessible;
     updateColors();
+    updateLabels();
   },
 };

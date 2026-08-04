@@ -9,14 +9,15 @@ export default {
     <p>
         Formulare sollten dauerhaft sichtbare Beschriftungen besitzen, damit
         Eingabefelder jederzeit eindeutig zugeordnet werden können. Werden
-        stattdessen ausschließlich Platzhalter oder andere Hinweise verwendet,
+        stattdessen ausschließlich Platzhalter verwendet, 
         gehen wichtige Informationen häufig während der Eingabe verloren.
     </p>
 
     <p>
         <strong>Ihre Aufgabe:</strong><br>
         Ein Kunde hat eine neue <strong>Vorgangsnummer</strong> erhalten.
-        Aktualisieren Sie diese auf: <strong>445128</strong>
+        Aktualisieren Sie diese auf: <strong>445128</strong> 
+        Speichern Sie anschließend Ihre Änderrung.
     </p>
     `,
 
@@ -27,7 +28,7 @@ export default {
         In der nicht barrierefreien Variante fehlen die sichtbaren
         Beschriftungen der Eingabefelder. Sobald ein Feld ausgefüllt wird,
         ist nicht mehr eindeutig erkennbar, welche Information dort
-        eingetragen werden soll. Dadurch steigt die Wahrscheinlichkeit von
+        eingetragen werden soll. Dadurch steigt das Risiko von
         Eingabefehlern deutlich.
     </p>
 
@@ -39,10 +40,10 @@ export default {
     </p>
 
     <p>
-        Außerdem können Screenreader sichtbare Beschriftungen zuverlässig
-        mit den jeweiligen Eingabefeldern verknüpfen. Dadurch werden
-        Formulare auch für blinde und sehbehinderte Menschen verständlich
-        und zuverlässig bedienbar.
+        Außerdem können Screenreader korrekt ausgezeichnete Beschriftungen 
+        zuverlässig erfassen und den jeweiligen Eingabefeldern zuordnen. 
+        Dadurch werden Formulare auch für blinde und sehbehinderte Menschen 
+        verständlich und zuverlässig bedienbar.
     </p>
 
     <h4>Weiterführende Informationen</h4>

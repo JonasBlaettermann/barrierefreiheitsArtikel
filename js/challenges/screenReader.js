@@ -2,7 +2,6 @@ import { icons } from "../icons.js";
 import { speak } from "../reader.js";
 
 let demoContainer = null;
-let selectedItem = null;
 
 const speechTexts = {
   inaccessible: [
@@ -80,15 +79,15 @@ export default {
     <p>
         In der barrierefreien Variante wurden dieselben Elemente mit
         aussagekräftigen Bezeichnungen versehen, beispielsweise
-        „Button, Warenkorb, 3 Artikel“. Die Oberfläche sieht dabei nahezu
+        „Schaltfläche, Warenkorb, 3 Artikel“. Die Oberfläche sieht dabei nahezu
         identisch aus, für Screenreader-Nutzerinnen und -Nutzer verbessert sich
         die Bedienbarkeit jedoch erheblich.
     </p>
 
     <p>
-        Aussagekräftige Beschriftungen, Alternativtexte und eine semantisch
-        korrekte HTML-Struktur ermöglichen es Screenreadern, Inhalte zuverlässig
-        zu erfassen und verständlich vorzulesen. Dadurch werden digitale Angebote
+        Aussagekräftige Beschriftungen, Alternativtexte und semantisch korrektes 
+        HTML ermöglichen es Screenreadern, Inhalte zuverlässig zu erfassen und 
+        verständlich vorzulesen. Dadurch werden digitale Angebote
         auch für blinde und sehbehinderte Menschen nutzbar.
     </p>
 
@@ -182,9 +181,7 @@ export default {
       item.addEventListener("focus", () => {
         speak(item.dataset.speech);
       });
-    });
 
-    navItems.forEach((item) => {
       item.addEventListener("click", (event) => {
         event.preventDefault();
       });
@@ -230,10 +227,8 @@ export default {
 
         event.preventDefault();
 
-        selectedItem = item;
-
         navItems.forEach((i) => i.classList.remove("selected"));
-        selectedItem.classList.add("selected");
+        item.classList.add("selected");
 
         speak(`${item.dataset.speech}, aktiviert`);
       });

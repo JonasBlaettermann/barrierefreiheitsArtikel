@@ -1,8 +1,5 @@
 let demoContainer = null;
 
-let simulationMode = true;
-let accessibilityMode = false;
-
 export default {
   title: "⚫ Farbkontraste",
 
@@ -17,8 +14,7 @@ export default {
 
     <p>
         <strong>Ihre Aufgabe:</strong><br>
-        Erstellen Sie ein Passwort, das alle Anforderungen erfüllt. Lesen Sie dazu die
-        Passwortregeln und geben Sie ein passendes Passwort ein.   
+        Erstellen Sie ein Passwort, das alle Anforderungen erfüllt. Orientieren Sie sich dabei an den angezeigten Passwortregeln.
     </p>
 
     <p>
@@ -43,8 +39,7 @@ export default {
     </p>
 
     <p>
-        Die Web Content Accessibility Guidelines (WCAG) definieren Mindestanforderungen
-        für den Kontrast von Texten, damit Inhalte zuverlässig wahrgenommen werden können.
+        Die Web Content Accessibility Guidelines (WCAG) definieren deshalb Mindestanforderungen an den Kontrast von Texten, damit Inhalte zuverlässig wahrgenommen werden können.
     </p>
 
     <h4>Weiterführende Informationen</h4>
@@ -119,8 +114,9 @@ export default {
     let specialOk = false;
 
     function updateRule(element, fulfilled) {
-      element.textContent = `${fulfilled ? "☑" : "☐"} ${element.textContent.substring(2)}`;
+      const text = element.textContent.slice(2);
 
+      element.textContent = `${fulfilled ? "☑" : "☐"} ${text}`;
       element.classList.toggle("fulfilled", fulfilled);
 
       return fulfilled;
@@ -161,14 +157,10 @@ export default {
   },
 
   setSimulationMode(isSimulation) {
-    simulationMode = isSimulation;
-
     demoContainer.classList.toggle("low-contrast", isSimulation);
   },
 
   setAccessibilityMode(isAccessible) {
-    accessibilityMode = isAccessible;
-
     demoContainer.classList.toggle("accessible", isAccessible);
   },
 };
