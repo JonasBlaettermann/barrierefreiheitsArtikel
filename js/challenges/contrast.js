@@ -93,13 +93,16 @@ export default {
                 Das Passwort erfüllt noch nicht alle Anforderungen.
             </p>
 
-
+            <p class="password-success hidden">
+                ✓ Das Passwort erfüllt alle Anforderungen.
+            </p>
         </div>
     `;
 
     const passwordInput = demo.querySelector("#password");
     const saveButton = demo.querySelector("#save-password");
     const errorMessage = demo.querySelector(".password-error");
+    const successMessage = demo.querySelector(".password-success");
 
     const rules = {
       length: demo.querySelector('[data-rule="length"]'),
@@ -148,9 +151,11 @@ export default {
     saveButton.addEventListener("click", () => {
       if (lengthOk && upperOk && numberOk && specialOk) {
         errorMessage.classList.add("hidden");
+        successMessage.classList.remove("hidden");
         return;
       }
 
+      successMessage.classList.add("hidden");
       errorMessage.classList.remove("hidden");
     });
   },

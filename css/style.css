@@ -301,7 +301,7 @@ button {
 
 .password-rules li {
     margin-bottom: 0.35rem;
-    color: #7d7d7d;
+    color: #b7b7b7;
 }
 
 .password-rules li:last-child {
@@ -311,6 +311,7 @@ button {
 .password-rules .fulfilled {
     color: inherit;
     font-weight: 700;
+    color:#b9b9b9
 }
 
 .accessible .password-dialog h3 {
@@ -327,8 +328,8 @@ button {
 }
 
 .accessible .password-rules {
-    background: #f3f3f3;
-    border: 1px solid #d0d0d0;
+    background: #e6e6e6;
+    border: 1px solid #ababab;
 }
 
 .accessible .password-rules h4 {
@@ -344,44 +345,136 @@ button {
     font-weight: 700;
 }
 
-.low-contrast .password-rules li,
+.low-contrast .password-dialog label,
+.low-contrast .password-dialog h3 {
+    color: #cfcfcf;
+}
+
+.low-contrast .password-dialog input {
+    color: #cfcfcf;
+    border-color: #ededed;
+}
+
+.low-contrast .password-rules  {
+    background: #fafafa;
+    border: 1px solid #fafafa;
+}
+
+.low-contrast .password-rules li {
+    color: #f5f5f5;
+}
+
+.low-contrast .password-rules h4 {
+    color: #d1d1d1;
+}
+
 .low-contrast .password-rules .fulfilled {
-    color: #f2f2f2;
+    color: #f4f4f4;
+}
+
+.low-contrast .password-dialog button {
+    color: #cfcfcf;
+    background: #f3f3f3;
+    border-color: #e8e8e8;
+}
+
+.low-contrast .password-dialog input:focus,
+.low-contrast .password-dialog input:focus-visible {
+    outline-color: #cfcfcf;
+    border-color: #cfcfcf;
+    box-shadow: 0 0 0 2px #eeeeee;
 }
 
 .low-contrast.accessible .password-dialog {
     color: #222;
 }
 
-.low-contrast.accessible .password-dialog label,
-.low-contrast.accessible .password-dialog input,
+.low-contrast.accessible .password-dialog h3 {
+    color: #bcbcbc;
+}
+
+.low-contrast.accessible .password-dialog label {
+    color: #c6c6c6;
+}
+
+.low-contrast.accessible .password-dialog input {
+    color: #cfcfcf;
+    border-color: #d2d2d2;
+}
+
 .low-contrast.accessible .password-dialog button {
-    color: #555;
+    color: #c0bfbf;
+    background: #f6f6f6;
+    border-color: #c0bfbf;
 }
 
 .low-contrast.accessible .password-rules {
-    background: #f5f5f5;
-    border: 1px solid #bcbcbc;
+    background: #efefef;
+    border: 1px solid #d2d2d2;
 }
 
-.low-contrast.accessible .password-dialog h4,
-.low-contrast.accessible .password-rules .h3 {
-    color: #555;
+.low-contrast.accessible .password-dialog h4 {
+    color: #bebebe;
 }
 
-.low-contrast.accessible .password-rules .fulfilled,
 .low-contrast.accessible .password-rules li {
-    color: #666;
+    color: #c4c4c4;
+}
+
+.low-contrast.accessible .password-rules .fulfilled {
+    color: #c0c0c0;
+    font-weight: 700;
+}
+
+.low-contrast.accessible .password-dialog input:focus-visible {
+    outline: 2px solid #161618;
+    outline-offset: 2px;
+    border-color: #161618;
+    box-shadow: none;
+}
+
+.low-contrast.accessible .password-error {
+    color: #b97b86;
+}
+
+.low-contrast.accessible .password-success {
+    color: #6d9c74;
+}
+
+.password-error,
+.password-success {
+    margin-top: .75rem;
+    text-align: center;
+    font-weight: 600;
 }
 
 .password-error {
-    margin-top: .75rem;
-    text-align: center;
     color: #b00020;
 }
 
-.password-error.hidden {
+.password-success {
+    color: #0b7a28;
+}
+
+.password-error.hidden,
+.password-success.hidden {
     display: none;
+}
+
+.low-contrast .password-error {
+    color: #d3b6bc;
+}
+
+.low-contrast .password-success {
+    color: #b7cfb9;
+}
+
+.low-contrast.accessible .password-error {
+    color: #f6bbbd;
+}
+
+.low-contrast.accessible .password-success {
+    color: #bddbc0;
 }
 
 /* Keyboard Simulation Styles */

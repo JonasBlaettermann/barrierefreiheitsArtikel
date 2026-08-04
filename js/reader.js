@@ -9,12 +9,13 @@ function loadVoice() {
     null;
 }
 
-loadVoice();
-
-speechSynthesis.onvoiceschanged = loadVoice;
+if ("speechSynthesis" in window) {
+  loadVoice();
+  speechSynthesis.onvoiceschanged = loadVoice;
+}
 
 export function speak(text) {
-  if (!("speechSynthesis" in window)) {
+  if (!("speechSynthesis" in window) || !text) {
     return;
   }
 

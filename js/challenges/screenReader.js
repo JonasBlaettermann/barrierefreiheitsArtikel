@@ -37,6 +37,8 @@ function updateSpeechTexts(isAccessible) {
 }
 
 export default {
+  enableSpeech: true,
+
   title: "🔊 Screenreader",
 
   introduction: `

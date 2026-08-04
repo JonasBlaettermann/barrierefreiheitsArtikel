@@ -24,7 +24,7 @@ const navigation = document.getElementById("challengeNavigation");
 function renderNavigation() {
   navigation.innerHTML = "";
 
-  challenges.forEach((challenge, index) => {
+  challenges.forEach((_, index) => {
     const button = document.createElement("button");
     button.classList.add("challenge-dot");
 
@@ -50,12 +50,18 @@ function renderNavigation() {
     }
   });
 }
+
 export function nextChallenge() {
   if (currentChallenge < challenges.length - 1) {
     showChallenge(currentChallenge + 1);
   } else {
     alert("Alle Challenges abgeschlossen!");
   }
+}
+
+function completeChallenge() {
+  completedChallenges.add(currentChallenge);
+  renderNavigation();
 }
 
 export function showChallenge(index) {
@@ -69,9 +75,4 @@ export function showChallenge(index) {
   });
 }
 
-export function completeChallenge() {
-  completedChallenges.add(currentChallenge);
-  renderNavigation();
-}
-
-showChallenge(1);
+showChallenge(0);

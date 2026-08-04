@@ -1,5 +1,7 @@
 import { speak } from "./reader.js";
 
+let screenReaderEnabled = false;
+
 const title = document.getElementById("title");
 const introduction = document.getElementById("introduction");
 const demo = document.getElementById("demo");
@@ -25,27 +27,35 @@ let onNext = () => {};
 let onComplete = () => {};
 
 checkButton.addEventListener("focus", () => {
-  speak(`Button, ${checkButton.textContent}`);
+  speakIfEnabled(`Button, ${checkButton.textContent}`);
 });
 
 accessibilityToggle.addEventListener("focus", () => {
-  speak(
+  speakIfEnabled(
     accessibilityToggle.checked
       ? "Barrierefreiheit. Umschalter. Barrierefrei aktiviert."
       : "Barrierefreiheit. Umschalter. Nicht barrierefrei aktiviert.",
   );
 });
 
+toggle.addEventListener("focus", () => {
+  speakIfEnabled(
+    toggle.checked
+      ? "Darstellung. Eingeschränkt aktiviert."
+      : "Darstellung. Normativ aktiviert.",
+  );
+});
+
 title.addEventListener("focus", () => {
-  speak(title.textContent);
+  speakIfEnabled(title.textContent);
 });
 
 introduction.addEventListener("focus", () => {
-  speak(introduction.innerText);
+  speakIfEnabled(introduction.innerText);
 });
 
 resultText.addEventListener("focus", () => {
-  speak(resultText.innerText);
+  speakIfEnabled(resultText.innerText);
 });
 
 function updateToggleLabels() {
@@ -56,11 +66,19 @@ function updateToggleLabels() {
   accessibilityRight.classList.toggle("active", accessibilityToggle.checked);
 }
 
+function speakIfEnabled(text) {
+  if (screenReaderEnabled) {
+    speak(text);
+  }
+}
+
 export function loadChallenge(
   challenge,
   { onNext: next, onComplete: complete },
 ) {
   currentChallenge = challenge;
+
+  screenReaderEnabled = !!challenge.enableSpeech;
 
   onNext = next;
   onComplete = complete;
@@ -93,7 +111,7 @@ export function loadChallenge(
   // Demo aufbauen
   challenge.render({
     demo,
-    enableContinue() {
+    enableContinue: () => {
       checkButton.disabled = false;
       checkButton.textContent = "Weiter zur Erklärung";
     },
@@ -128,7 +146,9 @@ toggle.addEventListener("change", () => {
 
   updateToggleLabels();
 
-  speak(toggle.checked ? "Eingeschränkt aktiviert." : "Normativ aktiviert.");
+  speakIfEnabled(
+    toggle.checked ? "Eingeschränkt aktiviert." : "Normativ aktiviert.",
+  );
 });
 
 accessibilityToggle.addEventListener("change", () => {
@@ -137,4 +157,10 @@ accessibilityToggle.addEventListener("change", () => {
   currentChallenge.setAccessibilityMode?.(accessibilityToggle.checked);
 
   updateToggleLabels();
+
+  speakIfEnabled(
+    accessibilityToggle.checked
+      ? "Barrierefrei aktiviert."
+      : "Nicht barrierefrei aktiviert.",
+  );
 });
