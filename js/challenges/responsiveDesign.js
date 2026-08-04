@@ -16,9 +16,9 @@ function updateLayout() {
   if (!demoContainer) return;
 
   const dashboard = demoContainer.querySelector(".dashboard");
+  const viewport = demoContainer.querySelector(".zoom-viewport");
   const zoomContent = demoContainer.querySelector(".zoom-content");
   const zoomText = demoContainer.querySelector(".browser-zoom");
-  const viewport = demoContainer.querySelector(".zoom-viewport");
 
   zoomContent.classList.toggle("zoomed", simulationMode);
 
@@ -26,44 +26,77 @@ function updateLayout() {
 
   viewport.classList.toggle("no-scroll", !simulationMode);
 
-  dashboard.classList.toggle("accessible", simulationMode && accessibilityMode);
+  const isAccessibleLayout = simulationMode && accessibilityMode;
+
+  dashboard.classList.toggle("accessible", isAccessibleLayout);
 }
 
 export default {
   title: "🔍 Webseiten bei 400 % Zoom nutzen",
 
   introduction: `
-        <p>
-            🔍 <strong>Hinweis:</strong> Diese Challenge simuliert die Nutzung einer Webseite bei einer Vergrößerung von 400&nbsp;%. Die Darstellung wurde vereinfacht und dient ausschließlich der Veranschaulichung.
-        </p>
+  <h3>Warum 400 % Zoom wichtig sind</h3>
 
-        <p>
-            Viele Menschen vergrößern Webseiten deutlich, beispielsweise aufgrund einer Sehbehinderung oder eingeschränkten Sehkraft. Dabei sollte die Seite weiterhin ohne horizontales Scrollen nutzbar und verständlich bleiben.
-        </p>
+  <p>
+      Viele Menschen sind darauf angewiesen, Websiten deutlich zu vergrößern, 
+      beispielsweise aufgrund einer Sehbehinderung oder eingeschränkten Sehkraft. Auch bei einer
+      Vergrößerung von bis zu <strong>400&nbsp;%</strong> müssen Inhalte
+      vollständig nutzbar bleiben, ohne dass ständig horizontal gescrollt
+      werden muss.
+  </p>
 
-        <p>
-            <strong>Ihre Aufgabe:</strong><br>
-            Finden Sie die Schaltfläche <strong>„Bearbeiten“</strong> der Karte <strong>„Kundenverwaltung“</strong>.
-        </p>
+  <p>
+      <strong>Ihre Aufgabe:</strong><br>
+      Finden Sie die Schaltfläche
+      <strong>„Bearbeiten“</strong> der Karte
+      <strong>„Benutzer“</strong>.
+  </p>
 
-        <p>
-            Beobachten Sie anschließend den Unterschied zwischen der eingeschränkten und der barrierefreien Variante.
-        </p>
-    `,
+  <p>
+      Erst nach Abschluss der Aufgabe können Sie zwischen der simulierten und
+      der normativen Darstellung sowie einer barrierefreien Variante wechseln.
+  </p>
+  `,
 
   explanation: `
-        <p>
-            In der eingeschränkten Variante wurde das Dashboard nicht für starke Vergrößerungen entwickelt. Die Karten behalten ihre feste Breite bei und ragen über den sichtbaren Bereich hinaus. Dadurch wird horizontales Scrollen notwendig und zusammengehörige Informationen können leicht aus dem Blick geraten.
-        </p>
+  <h3>Warum ist das problematisch?</h3>
 
-        <p>
-            In der barrierefreien Variante passt sich das Layout automatisch an die verfügbare Breite an. Die Karten werden untereinander angeordnet, sodass alle Inhalte ohne horizontales Scrollen erreichbar bleiben.
-        </p>
+  <p>
+      In der eingeschränkten Variante besitzt das Dashboard eine feste Breite.
+      Bei einer Vergrößerung auf 400&nbsp;% reichen die Inhalte dadurch über
+      den sichtbaren Bereich hinaus. Um alle Informationen zu erreichen,
+      muss zusätzlich horizontal gescrollt werden.
+  </p>
 
-        <p>
-            Die WCAG verlangen, dass Inhalte auch bei einer Vergrößerung von bis zu 400&nbsp;% ohne Informationsverlust und – mit wenigen Ausnahmen – ohne horizontales Scrollen nutzbar bleiben. Ein responsives Layout verbessert dabei nicht nur die Barrierefreiheit, sondern auch die Nutzung auf Smartphones und kleinen Bildschirmen.
-        </p>
-    `,
+  <p>
+      In der barrierefreien Variante passt sich das Layout automatisch an den
+      verfügbaren Platz an. Die Karten werden untereinander angeordnet,
+      sodass alle Inhalte auch bei starker Vergrößerung ohne horizontales
+      Scrollen erreichbar bleiben.
+  </p>
+
+  <p>
+      Ein responsives Layout verbessert nicht nur die Barrierefreiheit,
+      sondern erleichtert auch die Nutzung auf Smartphones, Tablets und
+      kleinen Bildschirmen.
+  </p>
+
+  <h4>Weiterführende Informationen</h4>
+
+  <ul>
+      <li>
+          <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html" target="_blank">
+              WCAG 2.2 – Understanding Success Criterion 1.4.10: Reflow
+          </a>
+      </li>
+
+      <li>
+          <a href="https://www.w3.org/WAI/WCAG22/quickref/#reflow" target="_blank">
+              WCAG Quick Reference – 1.4.10 Reflow
+          </a>
+      </li>
+  </ul>
+  `,
 
   render({ demo, enableContinue }) {
     demoContainer = demo;
@@ -120,23 +153,15 @@ export default {
     </div>
     `;
 
-    const targetButton = demo.querySelector("#targetButton");
     const buttons = demo.querySelectorAll(".edit-button");
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        buttons.forEach((b) => {
-          b.classList.remove("selected");
-          b.classList.remove("wrong");
-        });
+        buttons.forEach((b) => b.classList.remove("selected"));
 
-        if (button === targetButton) {
-          button.classList.add("selected");
+        button.classList.add("selected");
 
-          enableContinue();
-        } else {
-          button.classList.add("wrong");
-        }
+        enableContinue();
       });
     });
   },

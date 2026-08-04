@@ -652,9 +652,55 @@ button {
 
 /* Responsive Design Simulation Styles */
 
-.demo-viewport {
-    width: 360px;
-    overflow-x: auto;
+.zoom-demo{
+    width:100%;
+}
+
+.zoom-browser{
+    width:650px;
+    margin:auto;
+    border:2px solid #666;
+    border-radius:10px;
+    overflow:hidden;
+    background:white;
+}
+
+.browser-bar{
+    padding:18px 20px;
+    background:#efefef;
+    border-bottom:1px solid #ddd;
+    text-align:right;
+    font-size:22px;
+    font-weight:700;
+}
+
+.zoom-viewport {
+    width: 650px;
+    height: 420px;
+
+    overflow: auto;
+
+    border: 2px solid #666;
+    border-radius: 8px;
+
+    background: white;
+}
+
+.zoom-viewport.no-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.zoom-content {
+    width: max-content;
+    padding: 8px;
+    transform: none;
+    transform-origin: top left;
+    transition: transform .45s ease;
+}
+
+.zoom-content.zoomed {
+    transform: scale(4);
 }
 
 .dashboard{
@@ -694,7 +740,7 @@ button {
     font-size:24px;
 }
 
-.dashboard-card button{
+.edit-button{
     align-self:center;
     padding:18px 30px;
     font-size:22px;
@@ -712,6 +758,24 @@ button {
     padding: 16px;
 }
 
+.dashboard.accessible h2 {
+    font-size: 36px;
+    margin-bottom: 28px;
+}
+
+.dashboard.accessible .dashboard-card h3 {
+    font-size: 26px;
+}
+
+.dashboard.accessible .dashboard-card p {
+    font-size: 20px;
+}
+
+.dashboard.accessible .dashboard-card button {
+    font-size: 18px;
+    padding: 14px 22px;
+}
+
 .dashboard.accessible .dashboard-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -719,8 +783,11 @@ button {
 
 .dashboard.accessible .dashboard-card {
     width: 100%;
+    max-width: 420px;
     align-items: flex-start;
     text-align: left;
+    padding: 16px;
+    gap: 12px;
 }
 
 .dashboard.accessible .dashboard-card button {
@@ -731,72 +798,6 @@ button {
     width: auto;
 }
 
-.edit-button.selected {
-    background: #1976d2;
-    color: white;
-
-    outline: 3px solid #1976d2;
+.dashboard-card .edit-button.selected {
+    box-shadow: 0 0 0 5px rgba(5, 118, 231, 0.25);
 }
-
-.edit-button.wrong {
-    background: #ffebee;
-    color: #c62828;
-
-    outline: 3px solid #d32f2f;
-}
-
-.zoom-demo{
-    width:100%;
-}
-
-.zoom-viewport {
-    width: 650px;
-    height: 420px;
-
-    overflow: auto;
-
-    border: 2px solid #666;
-    border-radius: 8px;
-
-    background: white;
-}
-
-.zoom-viewport.no-scroll {
-    overflow: hidden;
-}
-
-.zoom-viewport.no-scroll {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.zoom-browser{
-    width:650px;
-    margin:auto;
-    border:2px solid #666;
-    border-radius:10px;
-    overflow:hidden;
-    background:white;
-}
-
-.zoom-content {
-    width: max-content;
-    padding: 8px;
-    transform: none;
-    transform-origin: top left;
-    transition: transform .45s ease;
-}
-
-.zoom-content.zoomed {
-    transform: scale(4);
-}
-
-.browser-bar{
-    padding:18px 20px;
-    background:#efefef;
-    border-bottom:1px solid #ddd;
-    text-align:right;
-    font-size:22px;
-    font-weight:700;
-}
-
