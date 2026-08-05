@@ -2,6 +2,7 @@ import { icons } from "../icons.js";
 import { speak } from "../reader.js";
 
 let demoContainer = null;
+let initialized = false;
 
 const speechTexts = {
   inaccessible: [
@@ -116,7 +117,7 @@ export default {
 
     demo.innerHTML = `
     <div class="screenreader-content">
-        <div class="screenreader-demo">
+        <div class="screenreader-demo" tabindex="-1">
 
             <header class="header">
 
@@ -126,24 +127,24 @@ export default {
 
                 <nav class="navigation" aria-label="Hauptnavigation">
 
-                    <a class="nav-item" href="#">
+                    <a class="nav-item" href="#" tabindex="0">
                         ${icons.home}
                     </a>
 
-                    <button class="nav-item" aria-label="">
+                    <button class="nav-item" aria-label="" tabindex="0">
                         ${icons.search}
                     </button>
 
-                    <a class="nav-item" href="#">
+                    <a class="nav-item" href="#" tabindex="0">
                         ${icons.favorite}
                     </a>
 
-                    <button class="nav-item" aria-label="" id="cartButton">
+                    <button class="nav-item" aria-label="" id="cartButton" tabindex="0">
                         ${icons.cart}
                         <span class="cart-badge">3</span>
                     </button>
 
-                    <button class="nav-item" aria-label="">
+                    <button class="nav-item" aria-label="" tabindex="0">
                         ${icons.person}
                     </button>
 
@@ -240,7 +241,10 @@ export default {
 
   setAccessibilityMode(isAccessible) {
     updateSpeechTexts(isAccessible);
-    demoContainer.querySelector(".nav-item")?.focus();
+
+    if (initialized) {
+      demoContainer.querySelector(".nav-item")?.focus();
+    }
   },
 
   setSimulationMode(isSimulation) {
@@ -250,14 +254,18 @@ export default {
       .querySelector(".screen-overlay")
       .classList.toggle("hidden", !isSimulation);
 
-    demoContainer.querySelector(".nav-item")?.focus();
+    if (initialized) {
+      demoContainer.querySelector(".nav-item")?.focus();
+    }
   },
 
   onLoaded() {
     speechSynthesis.cancel();
 
-    setTimeout(() => {
-      document.getElementById("title").focus();
-    }, 0);
+    updateSpeechTexts(false);
+
+    requestAnimationFrame(() => {
+      demoContainer.querySelector(".nav-item").focus();
+    });
   },
 };

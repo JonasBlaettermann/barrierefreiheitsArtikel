@@ -120,9 +120,11 @@ export function loadChallenge(
       checkButton.textContent = "Weiter zur Erklärung";
     },
   });
+
   if (challenge.onLoaded) {
     challenge.onLoaded();
   }
+
   challenge.setAccessibilityMode?.(false);
   if (hasSimulation) {
     challenge.setSimulationMode?.(true);

@@ -91,7 +91,7 @@ export default {
             Angemeldet bleiben
             </label>
 
-            <a href="#" class="forgot-password">
+            <a href="#" class="forgot-password" tabindex="0">
             Passwort vergessen?
             </a>
 
@@ -141,7 +141,7 @@ export default {
       if (event.key === "Tab") {
         tabCount++;
 
-        if (tabCount >= 5) {
+        if (tabCount >= 6) {
           enableContinue();
         }
       }
