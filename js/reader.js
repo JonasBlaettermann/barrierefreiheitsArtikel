@@ -31,5 +31,7 @@ export function speak(text) {
     utterance.voice = voice;
   }
 
-  speechSynthesis.speak(utterance);
+  setTimeout(() => {
+    speechSynthesis.speak(utterance);
+  }, 10);
 }

@@ -27,6 +27,29 @@ button {
     display: none;
 }
 
+.article-introduction {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+    line-height: 1.7;
+}
+
+.article-introduction h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.article-introduction h2:first-child {
+    margin-top: 0;
+}
+
+.article-introduction p {
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    color: #444;
+}
+
 /* Comparison Panel */
 
 .comparison-panel {
@@ -141,6 +164,34 @@ button {
 }
 
 /* Challenge Styles */
+
+.article-divider {
+    position: relative;
+    max-width: 1100px;
+    margin: 3.5rem auto;
+    text-align: center;
+}
+
+.article-divider::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: #d9d9d9;
+}
+
+.article-divider span {
+    position: relative;
+    background: #fff;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
 
 .challenge {
     max-width: 700px;

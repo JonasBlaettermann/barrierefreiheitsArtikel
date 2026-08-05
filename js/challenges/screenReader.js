@@ -64,6 +64,9 @@ export default {
         Aufgabe können Sie zwischen der simulierten und der normativen Darstellung
         sowie einer barrierefreien Variante wechseln.
     </p>
+
+    <p>
+        <strong>Hinweis:</strong> Die Simulation verwendet die im Browser integrierte Sprachausgabe (Web Speech API). Je nach Browser kann sich die Verfügbarkeit oder Qualität der Stimmen unterscheiden. Für das beste Erlebnis empfehlen wir die aktuelle Version von Google Chrome oder Microsoft Edge.</p>
     `,
 
   explanation: `
@@ -251,6 +254,10 @@ export default {
   },
 
   onLoaded() {
-    document.getElementById("title").focus();
+    speechSynthesis.cancel();
+
+    setTimeout(() => {
+      document.getElementById("title").focus();
+    }, 0);
   },
 };

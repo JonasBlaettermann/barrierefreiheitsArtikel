@@ -152,11 +152,13 @@ export default {
     if (!demoContainer) return;
 
     demoContainer.classList.toggle("keyboard-simulation", isSimulation);
+    demoContainer.querySelector("#username")?.focus();
   },
 
   setAccessibilityMode(isAccessible) {
     if (!demoContainer) return;
 
     demoContainer.classList.toggle("accessible", isAccessible);
+    demoContainer.querySelector("#username")?.focus();
   },
 };

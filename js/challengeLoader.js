@@ -87,6 +87,10 @@ export function loadChallenge(
   explanationVisible = false;
 
   demo.innerHTML = "";
+
+  speechSynthesis.cancel();
+  demo.classList.remove("keyboard-simulation", "low-contrast", "accessible");
+
   resultSection.classList.remove("visible");
   comparisonPanel.classList.add("hidden");
 
