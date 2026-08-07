@@ -117,7 +117,9 @@ export function loadChallenge(
     demo,
     enableContinue: () => {
       checkButton.disabled = false;
-      checkButton.textContent = "Weiter zur Erklärung";
+      if (!explanationVisible) {
+        checkButton.textContent = "Weiter zur Erklärung";
+      }
     },
   });
 

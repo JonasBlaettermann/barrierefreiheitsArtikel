@@ -27,24 +27,24 @@ button {
     display: none;
 }
 
-.article-introduction {
+.article-content {
     max-width: 900px;
     margin: 0 auto 4rem;
     padding: 0 1rem;
     line-height: 1.7;
 }
 
-.article-introduction h2 {
+.article-content h2 {
     margin-top: 3rem;
     margin-bottom: 1rem;
     font-size: 2rem;
 }
 
-.article-introduction h2:first-child {
+.article-content h2:first-child {
     margin-top: 0;
 }
 
-.article-introduction p {
+.article-content p {
     margin-bottom: 1.25rem;
     font-size: 1.1rem;
     color: #444;
