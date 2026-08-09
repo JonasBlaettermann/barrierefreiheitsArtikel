@@ -20,15 +20,24 @@ function updateLayout() {
   const zoomContent = demoContainer.querySelector(".zoom-content");
   const zoomText = demoContainer.querySelector(".browser-zoom");
 
+  if (!dashboard || !viewport || !zoomContent || !zoomText) return;
+
+  const isAccessibleLayout = simulationMode && accessibilityMode;
+
+  dashboard.classList.toggle("accessible", isAccessibleLayout);
+
   zoomContent.classList.toggle("zoomed", simulationMode);
 
   zoomText.textContent = simulationMode ? "🔍 400 %" : "🔍 100 %";
 
   viewport.classList.toggle("no-scroll", !simulationMode);
 
-  const isAccessibleLayout = simulationMode && accessibilityMode;
+  zoomContent.style.height = "auto";
 
-  dashboard.classList.toggle("accessible", isAccessibleLayout);
+  requestAnimationFrame(() => {
+    viewport.scrollTop = 0;
+    viewport.scrollLeft = 0;
+  });
 }
 
 export default {
@@ -49,7 +58,7 @@ export default {
       <strong>Ihre Aufgabe:</strong><br>
       Finden Sie die Schaltfläche
       <strong>„Bearbeiten“</strong> der Karte
-      <strong>„Benutzer“</strong>.
+      <strong>"Rechnungen"</strong>.
   </p>
 
   <p>

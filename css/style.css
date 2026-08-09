@@ -32,6 +32,7 @@ button {
     margin: 0 auto 4rem;
     padding: 0 1rem;
     line-height: 1.7;
+    text-align: justify;
 }
 
 .article-content h2 {
@@ -849,6 +850,10 @@ button {
 
 .zoom-content.zoomed {
     transform: scale(4);
+}
+
+.zoom-viewport:not(.no-scroll) .zoom-content {
+    min-height: 100%;
 }
 
 .dashboard{
