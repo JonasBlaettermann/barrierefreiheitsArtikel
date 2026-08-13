@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Barrierefreiheit erleben - Interaktive WCAG-Beispiele</title>
+
+    <meta
+    name="description"
+    content="Erleben Sie digitale Barrierefreiheit anhand interaktiver Beispiele. Testen Sie Farbkontraste, Tastaturnavigation, Screenreader, Beschriftungen und Responsive Design."
+    >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<main class="challenge">
+
+    <div class="article-divider">
+
+        <span>Artikel</span>
+
+    </div>
+
+    <div class="article-content">
+
+        <h2>Was bedeutet digitale Barrierefreiheit?</h2>
+
+        <p>Barrierefrei bedeutet, dass man die Umwelt so gestaltet, dass alle Menschen ohne Hindernisse oder fremde Hilfe mit der Umgebung interagieren können. Ein klassisches Beispiel ist eine Rampe für Rollstuhlfahrer oder eine Ampel, die Geräusche von sich gibt, damit auch blinde Menschen sorglos die Straße überqueren können. Für den digitalen Raum gibt es den Begriff der “Digitalen Teilhabe”, die ebendies fordert: digitale Inhalte sollen von möglichst allen Menschen, unabhängig von ihren individuellen Fähigkeiten oder Einschränkungen, genutzt werden können. </p>
+
+        <h2>Warum ist Barrierefreiheit wichtig?</h2>
+
+        <p>Man könnte jetzt annehmen, dass barrierefreies Design nur Sonderfälle betrifft, aber das ist nicht der Fall. Es geht nicht darum, Kompromisse einzugehen oder etwas nur für eingeschränkte Personen zu gestalten. Im Gegenteil: Barrierefreies Design ist häufig einfach gutes Design mit übersichtlichen Oberflächen, klar verständlichen Abläufen und einer besseren Anwendungserfahrung, wovon letztendlich alle Nutzer:innen profitieren können. </p>
+
+        <p>Digitale Barrierefreiheit ist heute nicht mehr nur eine Frage guter Gestaltung. Durch gesetzliche Vorgaben wie das Barrierefreiheitsstärkungsgesetz (BFSG) wird sie für viele Unternehmen zunehmend verpflichtend. Unabhängig von gesetzlichen Anforderungen profitieren jedoch alle Nutzerinnen und Nutzer von einer zugänglichen Gestaltung.</p>
+
+        <p>Wenn man sich schon mal mit dem Thema beschäftigt hat, merkt man jedoch schnell, was für ein weites Feld es ist und wie viele Stolperfallen es gibt, die man potentiell übersehen könnte. Eine gute Grundidee, auf die man sich dann aber zu sehr versteift, kann vielleicht für 96% der Menschen gut funktionieren, doch die vier Prozent mit einer Rot-Grün-Sehschwäche bekommen dabei Schwierigkeiten. Das muss nicht der Fall sein, wenn man die Zugänglichkeit bei der Gestaltung von Anfang an in Betracht zieht. Das führt auch zu einem insgesamt besseren Design ohne große Abstriche, sodass am Schluss auch 100% der Bevölkerung (oder zumindest der Nutzer:innen) davon profitieren.</p>
+        
+        <h2>Interaktive Beispiele</h2>
+
+        <p>In diesem Artikel möchte ich nicht nur die verschiedenen Elemente guten, barrierefreien digitalen Designs auflisten, sondern diese auch erlebbar machen. Sie können jetzt gerne die fünf Beispiele im Demo-Bereich erkunden. Zu jeder Aufgabe bekommen Sie eine Einführung, was zu tun ist. Jede Demonstration startet zunächst mit einer nicht barrierefreien Darstellung und einer simulierten eingeschränkten Wahrnehmung oder Bedienbarkeit. Nach der Aufgabe können Sie zwischen der normativen und der barrierefreien Darstellung wechseln, um zu sehen, welche effektiven Maßnahmen man ergreifen kann, um das vorherige Problem mit Hilfe von gutem Design auszugleichen. </p>
+
+        <p><strong>Hinweis!</strong> Die Aufgaben sind extra anspruchsvoll gestaltet. Es geht nicht darum, richtig oder falsch zu liegen, sondern einmal selbst schlechtes Design an verschiedenen Beispielen zu erleben. Also fokussieren Sie sich nicht darauf, die Aufgabe “korrekt” auszuführen, sondern geben Sie sich dem Erleben der Situation hin.</p>
+        
+    </div>
+
+    <div class="article-divider">
+
+        <span>Interaktive Beispiele zur digitalen Barrierefreiheit</span>
+
+    </div>
+
+    <header class="challenge-header">
+        <h2 id="title"></h2>
+
+        <div id="challengeNavigation" class="challenge-navigation"></div>
+    </header>
+
+    <section class="challenge-section">
+        <div id="introduction" aria-live="polite"></div>
+    </section>
+
+    <section class="challenge-section">
+
+        <div class="challenge-demo">
+            <div class="demo-content" id="demo"></div>
+        </div>
+
+        <div id="comparisonPanel" class="comparison-panel hidden">
+
+            <h3>Varianten vergleichen</h3>
+
+            <p class="comparison-description">
+                Wechseln Sie zwischen den verschiedenen Varianten und beobachten Sie,
+                wie sich die Bedienbarkeit verändert.
+            </p>
+
+            <div class="comparison-options">
+
+                <div class="toggle-container" id="simulation-toggle">
+
+                    <span id="simulation-left" class="toggle-label active">
+                        Normativ
+                    </span>
+
+                    <label class="switch">
+                        <input type="checkbox" id="toggleView">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span id="simulation-right" class="toggle-label">
+                        Eingeschränkt
+                    </span>
+
+                </div>
+
+                <div class="toggle-container">
+
+                    <span id="accessibility-left" class="toggle-label active">
+                        Nicht barrierefrei
+                    </span>
+
+                    <label class="switch">
+                        <input id="accessibility-switch" type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span id="accessibility-right" class="toggle-label">
+                        Barrierefrei
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="challenge-section challenge-result" id="result">
+
+        <div id="resultText"></div>
+
+    </section>
+
+    <section class="challenge-section">
+
+        <button id="checkButton" disabled>
+            Bitte führen Sie zuerst die Aufgabe aus
+        </button>
+
+    </section>
+
+
+    <div class="article-divider">
+
+        <span>Fazit</span>
+
+    </div>
+
+    <div class="article-content">
+
+        <p>Barrierefreiheit ist ein weites und sehr komplexes Feld. Wie man durch die Beispiele sieht, sind es aber oftmals schon kleine Entscheidungen, welche einen großen Mehrwert liefern, ohne dabei große Abstriche im Design hinnehmen zu müssen. Für eine optimale Benutzererfahrung sollte deshalb Barrierefreiheit von Beginn an in den Entwicklungsprozess integriert sein.</p>
+    
+        <p>Die hier gezeigten Beispiele sind nur ein kleiner Ausschnitt der Web Content Accessibility Guidelines (WCAG). Themen wie verständliche Sprache, Medienalternativen, Tastaturbedienbarkeit oder semantische HTML-Strukturen zeigen, dass Barrierefreiheit viele Bereiche moderner Webentwicklung umfasst. Wer sie frühzeitig berücksichtigt, entwickelt Anwendungen, die langfristig robuster und benutzerfreundlicher sind.</p>
+
+    </div>
+
+        <div class="article-divider">
+
+        <span>FAQ</span>
+
+    </div>
+
+    <div class="article-content">
+
+        <h3>Was bedeutet digitale Barrierefreiheit?</h3>
+
+        <p>Digitale Barrierefreiheit soll allen Menschen, unabhängig von körperlichen, sensorischen oder kognitiven Einschränkungen, ermöglichen, am digitalen Leben teilzunehmen. Dies betrifft Webseiten, Anwendungen, digitale Dokumente und Medien. Beispiele von barrierefreiem Design sind gut lesbare Farbkontraste, die Möglichkeit alles via Tastatur zu bedienen, korrekt und klar gekennzeichnete Formulare oder die Unterstützung von Screenreadern.</p>
+
+        <h3>Warum ist digitale Barrierefreiheit wichtig?</h3>
+
+        <p>Barrierefreiheit ermöglicht allen Menschen, gleich verschiedener Einschränkungen, den Zugang zu digitalen Informationen und Dienstleistungen. Aber Barrierefreiheit geht über Zugänglichkeit hinaus und bietet allgemein besseres Design für alle Nutzer, mit klarerer Struktur und intuitiver Bedienung.</p>
+
+        <h3>Wer profitiert von barrierefreien Webseiten?</h3>
+
+        <p>Von barrierefreien Webseiten profitieren nicht nur Menschen mit Behinderungen, sondern auch ältere Menschen, Personen mit temporären Einschränkungen oder der Nutzung in schwierigen Umgebungen (zum Beispiel durch starkes Sonnenlicht). Es ist ein allgemeiner Mehrwert mit besserer Lesbarkeit und einfacher Bedienung. Barrierefreiheit kommt letztlich allen zugute.</p>
+
+        <h3>Was sind die WCAG?</h3>
+
+        <p>Die Web Content Accessibility Guidelines (WCAG) sind internationale Richtlinien des World Wide Web Consortiums (W3C) für barrierefreie Webinhalte. Sie definieren konkrete Anforderungen, mit denen Websites und Webanwendungen zugänglicher gestaltet werden können. Viele gesetzliche Vorgaben orientieren sich direkt an diesen Richtlinien.</p>
+
+        <h3>Ist barrierefreies Design mit mehr Aufwand verbunden?</h3>
+
+        <p>Wenn man Barrierefreiheit von Anfang an in das Design berücksichtigt, lassen sich die meisten Anforderungen mit geringem Mehraufwand umsetzen. Nachträgliche Anpassungen können dagegen häufig deutlich aufwändiger und kostenintensiver sein.</p>
+
+        <h3>Muss jede Website barrierefrei sein?</h3>
+
+        <p>Die rechtlichen Anforderungen hängen vom jeweiligen Land, der Art der Website und ihrem Anbieter ab. In Deutschland gelten für viele öffentliche Stellen und für bestimmte Unternehmen verbindliche Anforderungen, festlegt durch das Barrierefreiheitsstärkungsgesetz (BFSG). Aber auch unabhängig von gesetzlichen Vorgaben verbessert barrierefreies Design grundsätzlich die Nutzbarkeit und Reichweite digitaler Angebote.</p>
+
+        <h3>Welche typischen Barrieren gibt es auf Webseiten?</h3>
+
+        <p>Zu den häufigsten Barrieren gehören zu geringe Farbkontraste, fehlende Tastaturbedienbarkeit, unzureichende Beschriftungen von Formularen, fehlende Alternativtexte für Bilder sowie nicht aussagekräftige Bezeichnungen für Screenreader. Es sind oft kleine Details, die darüber entscheidend sind, ob eine Website problemlos genutzt werden kann. </p>
+
+        <h3>Warum enthält dieser Artikel interaktive Beispiele?</h3>
+
+        <p>Barrierefreiheit kann ein sehr ambiges Thema sein, wenn man selbst nicht davon betroffen ist. Deshalb wurde dieser Artikel mit interaktiven Beispielen verfasst, um den Leser oder die Leserin nicht nur mit trockener Theorie abspeisen, sondern die Probleme fehlender Barrierefreiheit direkt spürbar zu machen. Jede Challenge zeigt zunächst eine problematische Situation und gibt anschließend eine Erklärung mit der Möglichkeit, zwischen verschiedenen Parametern wechseln zu können. So können Nutzer:innen den eingeschränkten Modus erleben, die Herausforderungen erkennen und das Design anschließend mit dem barrierefreien Modus vergleichen. Dadurch wird deutlich, welche Auswirkungen kleine Designentscheidungen auf die Bedienbarkeit haben können.</p>
+
+    </div>
+</main>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
